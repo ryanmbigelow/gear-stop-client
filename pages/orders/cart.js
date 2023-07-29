@@ -11,7 +11,6 @@ const Cart = () => {
   const [currentCart, setCurrentCart] = useState({});
   const getCart = async () => {
     await getCartByCustomerId(user.id).then(setCurrentCart);
-    await console.warn(currentCart);
   };
   useEffect(() => {
     getCart();
@@ -33,7 +32,7 @@ const Cart = () => {
       <div>Shopping Cart</div>
       {currentOrderProducts.map((orderProduct) => (
         <div key={orderProduct.id}>
-          <OrderProductCard orderProductObj={orderProduct} />
+          <OrderProductCard orderProductObj={orderProduct} onUpdate={getOrderProducts} />
         </div>
       ))}
     </>

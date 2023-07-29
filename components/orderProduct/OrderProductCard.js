@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
 import Link from 'next/link';
 import { useAuth } from '../../utils/context/authContext';
-import { deleteProduct } from '../../utils/data/productData';
+import { deleteOrderProduct } from '../../utils/data/orderProductData';
 
 function OrderProductCard({ orderProductObj, onUpdate }) {
   const user = useAuth();
 
   const deleteSingleOrderProduct = () => {
     if (window.confirm(`Remove ${orderProductObj.product_id.title} from cart?`)) {
-      deleteProduct(orderProductObj.id).then(() => onUpdate());
+      deleteOrderProduct(orderProductObj.id).then(() => onUpdate());
     }
   };
 
