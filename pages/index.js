@@ -17,9 +17,8 @@ function Home() {
   }, []);
   return (
     <div>
-      <h1>Hello {user.fbUser.displayName}! </h1>
       <article>
-        <h3 className="row">Products</h3>
+        <h3>Hello {user.fbUser.displayName}, welcome to Gear Stop! </h3>
         <div className="row row-cols-1 row-cols-md-2">
           {products.map((product) => (
             <section key={`product--${product.id}`} className="col mb-4">

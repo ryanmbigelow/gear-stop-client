@@ -51,6 +51,25 @@ const deleteOrder = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getCartByCustomerId = (customerId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/orders?customerId=${customerId}&isOpen=true`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // if the api returns an array with the single object inside
+      // extract the first object from the array and resolve it
+      if (Array.isArray(data) && data.length > 0) {
+        resolve(data[0]);
+      } else {
+        resolve({});
+      }
+    }).catch(reject);
+});
+
 export {
-  getOrders, getSingleOrder, createOrder, updateOrder, deleteOrder,
+  getOrders, getSingleOrder, createOrder, updateOrder, deleteOrder, getCartByCustomerId,
 };
