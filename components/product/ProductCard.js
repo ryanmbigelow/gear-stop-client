@@ -21,23 +21,25 @@ function ProductCard({ productObj, onUpdate }) {
         <Card.Text>Description: {productObj.description}</Card.Text>
         <Card.Text>Quantity Available: {productObj.quantity_available}</Card.Text>
         <Card.Text>Category: {productObj.category_id.label}</Card.Text>
+        <Card.Text>Sold by: {productObj.seller_id.first_name} {productObj.seller_id.last_name}</Card.Text>
       </Card.Body>
-      <Card.Footer className="text-muted">Sold by: {productObj.seller_id.first_name} {productObj.seller_id.last_name}</Card.Footer>
-      <div className="btn-group">
-        <div>
-          <Link href={`/products/${productObj.id}`} passHref>
-            <Button type="button" className="m-2">View Product</Button>
-          </Link>
+      <Card.Footer className="text-muted">
+        <div className="btn-group">
+          <div>
+            <Link href={`/products/${productObj.id}`} passHref>
+              <Button type="button" className="m-2">View Product</Button>
+            </Link>
+          </div>
+          <div>
+            <Link href={`/products/edit/${productObj.id}`} passHref>
+              {productObj.seller_id.uid === user.user.uid ? (<Button type="button" className="m-2">Edit Product</Button>) : ''}
+            </Link>
+          </div>
+          <div>
+            {productObj.seller_id.uid === user.user.uid ? (<Button type="button" className="m-2" onClick={deleteSingleProduct}>Delete Product</Button>) : ''}
+          </div>
         </div>
-        <div>
-          <Link href={`/products/edit/${productObj.id}`} passHref>
-            {productObj.seller_id.uid === user.user.uid ? (<Button type="button" className="m-2">Edit Product</Button>) : ''}
-          </Link>
-        </div>
-        <div>
-          {productObj.seller_id.uid === user.user.uid ? (<Button type="button" className="m-2" onClick={deleteSingleProduct}>Delete Product</Button>) : ''}
-        </div>
-      </div>
+      </Card.Footer>
     </Card>
   );
 }

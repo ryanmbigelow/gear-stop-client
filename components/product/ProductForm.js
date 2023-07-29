@@ -50,7 +50,7 @@ const ProductForm = ({ productObj }) => {
     if (productObj.id) {
       const updatedProduct = {
         id: currentProduct.id,
-        sellerId: user.sellerId.id,
+        sellerId: Number(currentProduct.sellerId),
         categoryId: Number(currentProduct.categoryId),
         title: currentProduct.title,
         description: currentProduct.description,
@@ -58,7 +58,7 @@ const ProductForm = ({ productObj }) => {
         price: Number(currentProduct.price),
       };
       updateProduct(updatedProduct)
-        .then(() => router.push('/products'));
+        .then(() => router.push('/'));
     } else {
       const product = {
         id: currentProduct.id,
@@ -69,7 +69,7 @@ const ProductForm = ({ productObj }) => {
         quantityAvailable: Number(currentProduct.quantityAvailable),
         price: Number(currentProduct.price),
       };
-      createProduct(product).then(() => router.push('/products'));
+      createProduct(product).then(() => router.push('/'));
     }
   };
 

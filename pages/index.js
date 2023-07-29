@@ -16,23 +16,17 @@ function Home() {
     getAllProducts();
   }, []);
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
+    <div>
       <h1>Hello {user.fbUser.displayName}! </h1>
-      <article className="products">
-        <h3>Products</h3>
-        {products.map((product) => (
-          <section key={`product--${product.id}`} className="products">
-            <ProductCard productObj={product} onUpdate={getAllProducts} />
-          </section>
-        ))}
+      <article>
+        <h3 className="row">Products</h3>
+        <div className="row row-cols-1 row-cols-md-2">
+          {products.map((product) => (
+            <section key={`product--${product.id}`} className="col mb-4">
+              <ProductCard productObj={product} onUpdate={getAllProducts} className="card" />
+            </section>
+          ))}
+        </div>
       </article>
       <p>Click the button below to logout!</p>
       <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
